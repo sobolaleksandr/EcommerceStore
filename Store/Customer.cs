@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace Store
+﻿namespace Store
 {
+    using System.ComponentModel.DataAnnotations;
+
+    /// <summary>
+    /// Покупатель.
+    /// </summary>
     public class Customer
     {
-        public string Name { get; set; }
-
+        /// <summary>
+        /// Адрес электронной почты.
+        /// </summary>
         [Key]
         [EmailAddress(ErrorMessage = "Некорректный адрес")]
         public string Email { get; set; }
+
+        /// <summary>
+        /// Имя.
+        /// </summary>
+        public string Name { get; set; }
     }
 }

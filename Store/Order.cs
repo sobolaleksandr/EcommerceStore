@@ -1,22 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace Store
+﻿namespace Store
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    /// <summary>
+    /// Заказ.
+    /// </summary>
     public class Order
     {
-        public int Id { get; set; }
-
-        [Required]
-        public int Number { get; set; }
-
+        /// <summary>
+        /// Дата заказа.
+        /// </summary>
         [Required]
         [DataType(DataType.Date)]
         public DateTime Created { get; set; }
 
+        /// <summary>
+        /// Электронная почта клиента.
+        /// </summary>
         [Required]
         public string CustomerEmail { get; set; }
+
+        /// <summary>
+        /// Идентификатор заказа.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Номер заказа.
+        /// </summary>
+        [Required]
+        public int Number { get; set; }
     }
 }

@@ -1,23 +1,31 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-
-namespace Store.Memory
+﻿namespace Store.Memory
 {
-    class DbContextFactory
+    using System;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.Extensions.DependencyInjection;
+
+    /// <summary>
+    /// Фрабика контекстов.
+    /// </summary>
+    internal class DbContextFactory
     {
-        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public DbContextFactory(IHttpContextAccessor httpContextAccessor)
         {
-            this.httpContextAccessor = httpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
         }
 
+        /// <summary>
+        /// Создать котекст.
+        /// </summary>
+        /// <param name="repositoryType"> Тип репозитория. </param>
+        /// <returns> Возвращает контекст. </returns>
         public EcommerceContext Create(Type repositoryType)
         {
-            var services = httpContextAccessor.HttpContext.RequestServices;
-
+            var services = _httpContextAccessor.HttpContext.RequestServices;
             var dbContexts = services.GetService<Dictionary<Type, EcommerceContext>>();
             if (!dbContexts.ContainsKey(repositoryType))
                 dbContexts[repositoryType] = services.GetService<EcommerceContext>();
